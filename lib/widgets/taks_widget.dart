@@ -63,7 +63,16 @@ class _TaskWidgetState extends State<TaskWidget> {
                   //   style: MSHCheckboxStyle.fillScaleCheck,
                   //   onChanged: (selected) {},
                   // ),
-                  Checkbox(value: widget.task.isDone, onChanged: (selected) {}),
+                  Transform.scale(
+                    scale: 1.4,
+                    child: Checkbox(
+                        value: widget.task.isDone,
+                        activeColor: green,
+                        checkColor: white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(4))),
+                        onChanged: (selected) {}),
+                  ),
                   Expanded(
                     child: Text(
                       widget.task.title,
