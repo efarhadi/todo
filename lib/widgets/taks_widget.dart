@@ -63,11 +63,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                   //   style: MSHCheckboxStyle.fillScaleCheck,
                   //   onChanged: (selected) {},
                   // ),
-                  Checkbox(
-                      value: widget.task.isDone,
-                      onChanged: (selected) {
-                        print(selected);
-                      }),
+                  Checkbox(value: widget.task.isDone, onChanged: (selected) {}),
                   Expanded(
                     child: Text(
                       widget.task.title,
@@ -78,7 +74,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                 ],
               ),
               Text(
-                widget.task.subTitle,
+                widget.task.tasktyle.title,
                 overflow: TextOverflow.ellipsis,
               ),
               Spacer(),

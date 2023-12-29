@@ -4,6 +4,10 @@ import 'package:time_pickerr/time_pickerr.dart';
 import 'package:todo_app/constants/constants.dart';
 import 'package:todo_app/task.dart';
 
+import '../constants/enum_types.dart';
+import '../constants/task_type.dart';
+import '../constants/utility.dart';
+
 class editTaskScreen extends StatefulWidget {
   editTaskScreen({Key? key, required this.task}) : super(key: key);
   Task task;
@@ -17,8 +21,19 @@ class _editTaskScreenState extends State<editTaskScreen> {
   TextEditingController? textTaskTitle;
   TextEditingController? textTaskSubTitle;
   final box = Hive.box<Task>('TaskBox');
+  int _selectTaskTypeItem = 0;
 
   void initState() {
+    //select type when user want to edit task
+    //method 1
+    if (widget.task.tasktyle.TasltypeEnum == TaskTypeEnum.focus) {
+      _selectTaskTypeItem = 0;
+    } else if (widget.task.tasktyle.TasltypeEnum == TaskTypeEnum.date) {
+      _selectTaskTypeItem = 1;
+    } else if (widget.task.tasktyle.TasltypeEnum == TaskTypeEnum.working) {
+      _selectTaskTypeItem = 2;
+    }
+
     super.initState();
     negahban1.addListener(() {
       setState(() {});
@@ -123,6 +138,23 @@ class _editTaskScreenState extends State<editTaskScreen> {
                   },
                 ),
               ),
+              Container(
+                height: 200,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: get_task_type().length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return InkWell(
+                        onTap: (() {
+                          setState(() {
+                            _selectTaskTypeItem = index;
+                          });
+                        }),
+                        child: get_task_typs_list(get_task_type()[index], index,
+                            _selectTaskTypeItem));
+                  },
+                ),
+              ),
               ElevatedButton(
                 onPressed: () {
                   String TaskTittle = textTaskTitle!.text;
@@ -148,6 +180,25 @@ class _editTaskScreenState extends State<editTaskScreen> {
     widget.task.title = TaskTittle;
     widget.task.subTitle = TaskSubTittle;
     widget.task.time = _time!;
+    widget.task.tasktyle = get_task_type()[_selectTaskTypeItem];
     widget.task.save();
+  }
+
+  Widget get_task_typs_list(
+      Tasktyle tasktype, int index, int selectTaskTypeItem) {
+    return Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+              width: 2,
+              color:
+                  ((selectTaskTypeItem == index) ? green : Colors.transparent)),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        width: 140,
+        margin: EdgeInsets.all(8),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [Image.asset(tasktype.images), Text(tasktype.title)],
+        ));
   }
 }

@@ -20,6 +20,7 @@ class _addTaskScreenState extends State<addTaskScreen> {
   TextEditingController textTaskSubTitle = TextEditingController();
   final box = Hive.box<Task>('TaskBox');
   DateTime? _time;
+  int _selectTaskTypeItem = 0;
 
   void initState() {
     super.initState();
@@ -129,7 +130,14 @@ class _addTaskScreenState extends State<addTaskScreen> {
                   scrollDirection: Axis.horizontal,
                   itemCount: get_task_type().length,
                   itemBuilder: (BuildContext context, int index) {
-                    return get_task_typs_list(get_task_type()[index]);
+                    return InkWell(
+                        onTap: (() {
+                          setState(() {
+                            _selectTaskTypeItem = index;
+                          });
+                        }),
+                        child: get_task_typs_list(get_task_type()[index], index,
+                            _selectTaskTypeItem));
                   },
                 ),
               ),
@@ -154,8 +162,16 @@ class _addTaskScreenState extends State<addTaskScreen> {
     );
   }
 
-  Widget get_task_typs_list(Tasktyle tasktype) {
+  Widget get_task_typs_list(
+      Tasktyle tasktype, int index, int selectTaskTypeItem) {
     return Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+              width: 2,
+              color:
+                  ((selectTaskTypeItem == index) ? green : Colors.transparent)),
+          borderRadius: BorderRadius.circular(12),
+        ),
         width: 140,
         margin: EdgeInsets.all(8),
         child: Column(
@@ -165,7 +181,11 @@ class _addTaskScreenState extends State<addTaskScreen> {
   }
 
   addTask(String TaskTittle, String TaskSubTittle) {
-    var task = Task(title: TaskTittle, subTitle: TaskSubTittle, time: _time!);
+    var task = Task(
+        title: TaskTittle,
+        subTitle: TaskSubTittle,
+        time: _time!,
+        tasktyle: get_task_type()[_selectTaskTypeItem]);
     box.add(task);
   }
 }
