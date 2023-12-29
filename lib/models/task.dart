@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:todo_app/constants/task_type.dart';
+import 'package:todo_app/models/task_type.dart';
 
 part 'task.g.dart';
 

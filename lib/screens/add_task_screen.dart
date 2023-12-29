@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:time_pickerr/time_pickerr.dart';
 import 'package:todo_app/constants/constants.dart';
-import 'package:todo_app/constants/task_type.dart';
-import 'package:todo_app/constants/utility.dart';
-import 'package:todo_app/task.dart';
+import 'package:todo_app/models/utility/utility.dart';
 
+import '../models/task.dart';
 import '../widgets/task_type_item.dart';
 
 class addTaskScreen extends StatefulWidget {

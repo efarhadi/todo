@@ -1,5 +1,5 @@
-import 'package:todo_app/constants/enum_types.dart';
-import 'package:todo_app/constants/task_type.dart';
+import '../enum_types.dart';
+import '../task_type.dart';
 
 List<Tasktyle> get_task_type() {
   var list = [

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/constants/constants.dart';
 
-import '../constants/task_type.dart';
+import '../models/task_type.dart';
 
 Widget get_task_typs_list(
     Tasktyle tasktype, int index, int selectTaskTypeItem) {

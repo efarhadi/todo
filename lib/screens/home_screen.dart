@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:todo_app/constants/constants.dart';
 import 'package:todo_app/screens/add_task_screen.dart';
-import 'package:todo_app/task.dart';
 import 'package:todo_app/widgets/taks_widget.dart';
+
+import '../models/task.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:todo_app/constants/task_type.dart';
 
 import 'package:todo_app/screens/home_screen.dart';
-import 'package:todo_app/screens/add_task_screen.dart';
-import 'package:todo_app/screens/test_screen.dart';
-import 'package:todo_app/task.dart';
 
-import 'constants/enum_types.dart';
+import 'models/enum_types.dart';
+import 'models/task.dart';
+import 'models/task_type.dart';
 
 void main() async {
   await Hive.initFlutter();
