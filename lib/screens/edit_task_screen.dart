@@ -26,13 +26,18 @@ class _editTaskScreenState extends State<editTaskScreen> {
   void initState() {
     //select type when user want to edit task
     //method 1
-    if (widget.task.tasktyle.TasltypeEnum == TaskTypeEnum.focus) {
-      _selectTaskTypeItem = 0;
-    } else if (widget.task.tasktyle.TasltypeEnum == TaskTypeEnum.date) {
-      _selectTaskTypeItem = 1;
-    } else if (widget.task.tasktyle.TasltypeEnum == TaskTypeEnum.working) {
-      _selectTaskTypeItem = 2;
-    }
+    // if (widget.task.tasktyle.TasltypeEnum == TaskTypeEnum.focus) {
+    //   _selectTaskTypeItem = 0;
+    // } else if (widget.task.tasktyle.TasltypeEnum == TaskTypeEnum.date) {
+    //   _selectTaskTypeItem = 1;
+    // } else if (widget.task.tasktyle.TasltypeEnum == TaskTypeEnum.working) {
+    //   _selectTaskTypeItem = 2;
+    // }
+    //method 2 for select task type when user want to edit task
+    var index = get_task_type().indexWhere((element) {
+      return element.TasltypeEnum == widget.task.tasktyle.TasltypeEnum;
+    });
+    _selectTaskTypeItem = index;
 
     super.initState();
     negahban1.addListener(() {
