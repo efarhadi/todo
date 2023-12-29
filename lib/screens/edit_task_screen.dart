@@ -7,6 +7,7 @@ import 'package:todo_app/task.dart';
 import '../constants/enum_types.dart';
 import '../constants/task_type.dart';
 import '../constants/utility.dart';
+import '../widgets/task_type_item.dart';
 
 class editTaskScreen extends StatefulWidget {
   editTaskScreen({Key? key, required this.task}) : super(key: key);
@@ -187,23 +188,5 @@ class _editTaskScreenState extends State<editTaskScreen> {
     widget.task.time = _time!;
     widget.task.tasktyle = get_task_type()[_selectTaskTypeItem];
     widget.task.save();
-  }
-
-  Widget get_task_typs_list(
-      Tasktyle tasktype, int index, int selectTaskTypeItem) {
-    return Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-              width: 2,
-              color:
-                  ((selectTaskTypeItem == index) ? green : Colors.transparent)),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        width: 140,
-        margin: EdgeInsets.all(8),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [Image.asset(tasktype.images), Text(tasktype.title)],
-        ));
   }
 }
